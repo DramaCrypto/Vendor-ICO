@@ -22,6 +22,18 @@ contract PresaleICO is Ownable {
     event Deposit(address indexed _from, uint256 _value);
     event PayoutToken(address indexed _to, uint256 _value);
 
+    modifier whenClosePossible {
+        require(icoTimeLimit < block.timestamp, "Should wait until Limit Time!");
+        require(!closed);
+        _;
+    }
+
+    modifier whenDepositePossible {
+        require(icoTimeLimit > block.timestamp, "ICO is already ended!");
+        require(!closed);
+        _;
+    }
+
     constructor() {
         icoTimeLimit = block.timestamp + 30 days;
     }
@@ -31,10 +43,7 @@ contract PresaleICO is Ownable {
         token = IVendorToken(_vendorAddress);
     }
 
-    function deposit() public payable {
-        require(icoTimeLimit > block.timestamp, "ICO is already ended!");
-        require(!closed);
-
+    function deposit() public payable whenDepositePossible {
         deposits[_msgSender()] += msg.value;
         totalDeposits += msg.value;
         buyers.push(_msgSender());
@@ -42,10 +51,7 @@ contract PresaleICO is Ownable {
         emit Deposit(_msgSender(), msg.value);
     }
 
-    function close(address _withdrawAddress) public onlyOwner {
-        require(icoTimeLimit < block.timestamp, "ICO is locked by timeline!");
-        require(!closed);
-
+    function close(address _withdrawAddress) public whenClosePossible onlyOwner {
         closed = true;
 
         for (uint256 i = 0; i < buyers.length; i++) {
