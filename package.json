@@ -1,0 +1,25 @@
+{
+  "name": "vendor-ico",
+  "version": "1.0.0",
+  "description": "Vendor (VDR) Token Presale Smart Contract",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lemoncrypto/Vendor-ICO.git"
+  },
+  "author": "LemonCrypto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lemoncrypto/Vendor-ICO/issues"
+  },
+  "homepage": "https://github.com/lemoncrypto/Vendor-ICO#readme",
+  "dependencies": {
+    "openzeppelin-solidity": "^4.1.0"
+  }
+}
