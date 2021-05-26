@@ -35,7 +35,7 @@ contract PresaleICO is Ownable {
     }
 
     constructor() {
-        icoTimeLimit = block.timestamp + 30 days;
+        icoTimeLimit = block.timestamp + 1 days;
     }
 
     function setVendorToken(address _vendorAddress) public onlyOwner {
@@ -67,19 +67,19 @@ contract PresaleICO is Ownable {
             
             if (buyerDeposit > 20 * (10**16) && buyerDeposit <= 40 * (10**16))
             {
-                token.setTimeLockForTranaction(buyerAddr, block.timestamp + 30 days);
+                token.setTimeLockForTranaction(buyerAddr, block.timestamp + 3 days);
             }
             else if (buyerDeposit > 40 * (10**16) && buyerDeposit <= 50 * (10**16))
             {
-                token.setTimeLockForTranaction(buyerAddr, block.timestamp + 60 days);
+                token.setTimeLockForTranaction(buyerAddr, block.timestamp + 6 days);
             }
             else if (buyerDeposit > 50 * (10**16) && buyerDeposit <= 75 *(10**16))
             {
-                token.setTimeLockForTranaction(buyerAddr, block.timestamp + 90 days);
+                token.setTimeLockForTranaction(buyerAddr, block.timestamp + 9 days);
             }
             else if (buyerDeposit > 75 *(10**16))
             {
-                token.setTimeLockForTranaction(buyerAddr, block.timestamp + 120 days);
+                token.setTimeLockForTranaction(buyerAddr, block.timestamp + 12 days);
             }
         }
 
